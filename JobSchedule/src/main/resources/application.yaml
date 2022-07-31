@@ -4,6 +4,9 @@ spring:
     username: root
     password: 521314
     driver-class-name: com.mysql.jdbc.Driver
+    initial-size: 1
+    min-idle: 1
+    max-active: 20
 
     druid:
       aop-patterns: com.atguigu.admin.*  #监控SpringBean
