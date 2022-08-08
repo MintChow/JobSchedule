@@ -6,22 +6,22 @@ import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
  * @author MintChow
  * @create 2022-08-07-1:44
  */
+
 public class MinDailyJob extends QuartzJobBean {
-    @Autowired
-    ArrayList arrayList;
+
+    ArrayList arrayList=new ArrayList<>();
 
     @Autowired
     JdbcTemplate jdbcTemplate;
@@ -48,8 +48,10 @@ public class MinDailyJob extends QuartzJobBean {
     }
 
     //获取当日的该表的02:00-05:00最小流量值，仅拓安信可用
-    private String getMinDaily(String fmAddress,String queryTime) throws JSONException, ParseException {
-        long todayZero = dayFormat.parse(queryTime).getTime();
+    public String getMinDaily(String fmAddress,String queryTime) throws JSONException, ParseException {
+        Long todayZero = dayFormat.parse(queryTime).getTime();
+        Long today2h=todayZero+7200000;
+        Long today5h=todayZero+18000000;
         Map<String, String> param=new HashMap<>();
         param.put("fmAddress",fmAddress);
         param.put("startTime",queryTime);
@@ -67,8 +69,11 @@ public class MinDailyJob extends QuartzJobBean {
         String min;
         for (int i=0;i<json.length();i++){
             arr0=json.getJSONArray(i).getString(0);
+            Long timestamp=Long.parseLong(arr0);
             arr1=json.getJSONArray(i).getString(1);
-            arrayList.add(arr1);
+            if (timestamp>=today2h&&timestamp<=today5h){
+                arrayList.add(arr1);
+            }
         }
         if(arrayList.size()!=0){
             min= (String) Collections.min(arrayList);
