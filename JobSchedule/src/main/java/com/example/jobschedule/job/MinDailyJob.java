@@ -6,10 +6,10 @@ import org.quartz.JobExecutionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -48,7 +48,7 @@ public class MinDailyJob extends QuartzJobBean {
     }
 
     //获取当日的该表的02:00-05:00最小流量值，仅拓安信可用
-    public String getMinDaily(String fmAddress,String queryTime) throws JSONException, ParseException {
+    public String getMinDaily(String fmAddress, String queryTime) throws JSONException, ParseException {
         Long todayZero = dayFormat.parse(queryTime).getTime();
         Long today2h=todayZero+7200000;
         Long today5h=todayZero+18000000;
@@ -79,7 +79,7 @@ public class MinDailyJob extends QuartzJobBean {
             min= (String) Collections.min(arrayList);
             return  min;
         }else {
-            return "null";
+            return "";
         }
 
     }

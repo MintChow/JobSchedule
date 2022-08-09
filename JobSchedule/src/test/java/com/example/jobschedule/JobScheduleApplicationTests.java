@@ -2,9 +2,11 @@ package com.example.jobschedule;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.jobschedule.entity.MeterEntity;
+import com.example.jobschedule.entity.MinTableEntity;
 import com.example.jobschedule.job.MinDailyJob;
 import com.example.jobschedule.mapper.MeterMapper;
 import com.example.jobschedule.service.MeterService;
+import com.example.jobschedule.service.MinTableService;
 import com.example.jobschedule.util.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,6 +20,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -38,6 +41,11 @@ class JobScheduleApplicationTests {
     @Autowired
     MeterService meterService;
 
+    @Autowired
+    MinTableService minTableService;
+
+
+    MinTableEntity minTableEntity=new MinTableEntity();
 
     MinDailyJob a=new MinDailyJob();
 
@@ -94,10 +102,21 @@ class JobScheduleApplicationTests {
         List<MeterEntity> meterEntityList=meterService.list();
         for (MeterEntity o:meterEntityList) {
             if (o.getFmAddress()!=null&&o.getFmAddress()!=""&&o.getFmAddress()!="null"){
-                String queryTime="2022-08-08";//dayFormat.format(new Date());
+                String queryTime="2022-08-09";//dayFormat.format(new Date());
                     try {
-                        System.out.print(o.getAddress()+"             ");
-                        System.out.println(a.getMinDaily(o.getFmAddress(),queryTime));
+                        minTableEntity.setAddress(o.getAddress());
+                        minTableEntity.setPlatform(o.getPlatform());
+                        minTableEntity.setArea(o.getArea());
+                        minTableEntity.setSpringValue(o.getSpringValue());
+                        minTableEntity.setReference(o.getReference());
+                        minTableEntity.setRemarks(o.getRemarks());
+                        minTableEntity.setDate(queryTime);
+
+                        minTableEntity.setValue(new BigDecimal(a.getMinDaily(o.getFmAddress(),queryTime)));
+                        minTableEntity.setRemarks(o.getRemarks());
+                        minTableService.save(minTableEntity);
+//                        System.out.print(o.getAddress()+"             ");
+//                        System.out.println(a.getMinDaily(o.getFmAddress(),queryTime));
                     } catch (JSONException e) {
                         e.printStackTrace();
                     } catch (ParseException e) {
