@@ -1,6 +1,7 @@
 package com.example.jobschedule;
 
 import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.annotation.MapperScans;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-@MapperScan("com.example.jobschedule.mapper")
+@MapperScan({"com.example.jobschedule.mapper","com.example.jobschedule.controller"})
 public class JobScheduleApplication {
 
     public static void main(String[] args) {
