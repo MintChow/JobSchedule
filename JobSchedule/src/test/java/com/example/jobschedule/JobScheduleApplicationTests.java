@@ -32,8 +32,7 @@ import java.util.*;
 @SpringBootTest
 class JobScheduleApplicationTests {
 
-    @Autowired
-    JdbcTemplate jdbcTemplate;
+
 
     @Autowired
     DataSource dataSource;
@@ -52,6 +51,19 @@ class JobScheduleApplicationTests {
 
     ArrayList arrayList=new ArrayList<>();
 
+
+    @Test
+    void test() throws JSONException {
+        List<MeterEntity> meterEntityList=meterService.list();
+        for (MeterEntity o:
+        meterEntityList) {
+            if (o.getObjectIds()!=null&&!"".equals(o.getObjectIds())&&!"null".equals(o.getObjectIds())){
+                System.out.println(o.getObjectIds());
+                System.out.println(a.getMinDailyBySCADA(o.getObjectIds(),"2022-08-14"));
+            }
+
+        }
+    }
 
     @Test
     void contextLoads() throws JSONException, ParseException {

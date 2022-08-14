@@ -43,5 +43,5 @@ public class MeterEntity {
     private String fmAddress;
 
 
-    private String checkNumber;
+    private String objectIds;
 }
