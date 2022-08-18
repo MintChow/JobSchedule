@@ -2,9 +2,9 @@ spring:
 
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:13306/work?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
-    username: root
-    password: 521314
+    url: jdbc:mysql://10.8.3.30:3306/GS_FR?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: gsfruser
+    password: GS#fruser323
     driver-class-name: com.mysql.jdbc.Driver
     initial-size: 1
     min-idle: 1

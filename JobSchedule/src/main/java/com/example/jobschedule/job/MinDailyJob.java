@@ -6,10 +6,10 @@ import com.example.jobschedule.service.MeterService;
 import com.example.jobschedule.service.MinTableService;
 import com.example.jobschedule.util.HttpClientUtil;
 import org.quartz.JobExecutionContext;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONArray;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
 import java.math.BigDecimal;
@@ -45,10 +45,16 @@ public class MinDailyJob extends QuartzJobBean {
 
         String queryTime=dayFormat.format(new Date());
         List<MeterEntity> meterEntityList=meterService.list();
+        Calendar calendar=Calendar.getInstance();
+//        for (int j=110;j<131;j++){
+//            calendar.setTime(new Date());
+//            calendar.add(calendar.DATE,-j);
+//            queryTime=dayFormat.format(calendar.getTime());
         for (MeterEntity o:meterEntityList) {
             if (o.getFmAddress()!=null&&!"".equals(o.getFmAddress())&&!"null".equals(o.getFmAddress())){
 //                String queryTime="2022-08-09";//dayFormat.format(new Date());
                 try {
+                    minTableEntity.setNumber(o.getNumber());
                     minTableEntity.setAddress(o.getAddress());
                     minTableEntity.setPlatform(o.getPlatform());
                     minTableEntity.setArea(o.getArea());
@@ -56,7 +62,12 @@ public class MinDailyJob extends QuartzJobBean {
                     minTableEntity.setReference(o.getReference());
                     minTableEntity.setRemarks(o.getRemarks());
                     minTableEntity.setDate(queryTime);
-                    minTableEntity.setValue(new BigDecimal(getMinDaily(o.getFmAddress(),queryTime)));
+                    String min=getMinDaily(o.getFmAddress(),queryTime);
+                    if (""!=min&&min!=null){
+                        minTableEntity.setValue(new BigDecimal(min));
+                    }else {
+                        minTableEntity.setValue(null);
+                    }
                     minTableEntity.setRemarks(o.getRemarks());
                     minTableService.save(minTableEntity);
                 } catch (JSONException e) {
@@ -66,22 +77,31 @@ public class MinDailyJob extends QuartzJobBean {
                 }
             }
             if (o.getObjectIds()!=null&&!"".equals(o.getObjectIds())&&!"null".equals(o.getObjectIds())){
-                try {
-                    minTableEntity.setAddress(o.getAddress());
-                    minTableEntity.setPlatform(o.getPlatform());
-                    minTableEntity.setArea(o.getArea());
-                    minTableEntity.setSpringValue(o.getSpringValue());
-                    minTableEntity.setReference(o.getReference());
-                    minTableEntity.setRemarks(o.getRemarks());
-                    minTableEntity.setDate(queryTime);
-                    minTableEntity.setValue(new BigDecimal(getMinDailyBySCADA(o.getObjectIds(),queryTime)));
-                    minTableEntity.setRemarks(o.getRemarks());
-                    minTableService.save(minTableEntity);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                if (o.getNumber()<2000){
+                    try {
+                        minTableEntity.setNumber(o.getNumber());
+                        minTableEntity.setAddress(o.getAddress());
+                        minTableEntity.setPlatform(o.getPlatform());
+                        minTableEntity.setArea(o.getArea());
+                        minTableEntity.setSpringValue(o.getSpringValue());
+                        minTableEntity.setReference(o.getReference());
+                        minTableEntity.setRemarks(o.getRemarks());
+                        minTableEntity.setDate(queryTime);
+                        String min=getMinDailyBySCADA(o.getObjectIds(),queryTime);
+                        if (""!=min&&min!=null){
+                            minTableEntity.setValue(new BigDecimal(min));
+                        }else {
+                            minTableEntity.setValue(null);
+                        }
+                        minTableEntity.setRemarks(o.getRemarks());
+                        minTableService.save(minTableEntity);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
+
 
     }
 
@@ -102,14 +122,17 @@ public class MinDailyJob extends QuartzJobBean {
         String result= HttpClientUtil.doPost(url,param);
         JSONArray json =new JSONArray(result);
         json=json.getJSONArray(0);
-        String arr0;
+        if(json.length()==0){
+            return null;
+        }
+        Long arr0;
         String arr1;
         arrayList1.clear();
         String min;
         for (int i=0;i<json.length();i++){
-            arr0=json.getJSONArray(i).getString(0);
-            Long timestamp=Long.parseLong(arr0);
-            arr1=json.getJSONArray(i).getString(1);
+            arr0=json.getJSONArray(i).getLong(0);
+            Long timestamp=arr0;
+            arr1=json.getJSONArray(i).getBigDecimal(1).toString();
             if (timestamp>=today2h&&timestamp<=today5h){
                 arrayList1.add(arr1);
             }
@@ -118,7 +141,7 @@ public class MinDailyJob extends QuartzJobBean {
             min= (String) Collections.min(arrayList1);
             return  min;
         }else {
-            return "";
+            return null;
         }
 
     }
@@ -130,19 +153,22 @@ public class MinDailyJob extends QuartzJobBean {
         String result=HttpClientUtil.doPostJson(url,jsonsub);
         JSONObject json =new JSONObject(result);
         JSONArray jsonArray=json.getJSONArray("Data");
+        if (jsonArray.length()==0){
+            return null;
+        }
         jsonArray=jsonArray.getJSONArray(0);
         arrayList2.clear();
         for (int i=0;i<jsonArray.length();i++){
             JSONObject jsonData=jsonArray.getJSONObject(i);
-            String value=jsonData.getJSONArray("Values").getString(0);
-            arrayList2.add(new BigDecimal(value));
+            BigDecimal value=jsonData.getJSONArray("Values").getBigDecimal(0);
+            arrayList2.add(value);
         }
         if(arrayList2.size()!=0){
             BigDecimal mind= (BigDecimal) Collections.min(arrayList2);
             String min =mind.toPlainString();
             return  min;
         }else {
-            return "";
+            return null;
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.jobschedule.config;
 
+import com.example.jobschedule.job.MinDailyJob;
 import com.example.jobschedule.job.XqDailyJob;
 import org.quartz.*;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +14,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class QuartzConfig {
 
-    private static String JOB_GROUP_NAME = "XQDAILY_JOBGROUP";
-    private static String TRIGGER_GROUP_NAME = "XADAILY_TRIGGERGROUP";
+    private static String JOB_GROUP_NAME = "DAILY_JOBGROUP";
+    private static String TRIGGER_GROUP_NAME = "DAILY_TRIGGERGROUP";
 
 
     /*
@@ -33,7 +34,7 @@ public class QuartzConfig {
     @Bean
     public Trigger xqDailyTrigger(){
 
-        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("0 58 16 * * ?");
+        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("00 30 08 * * ?");
 
         Trigger trigger= TriggerBuilder.newTrigger()
                 .forJob(xqDailyJobDetail())
@@ -44,4 +45,26 @@ public class QuartzConfig {
         return trigger;
     }
 
+    @Bean
+    public JobDetail minDailyJobDetail() {
+        JobDetail jobDetail = JobBuilder.newJob(MinDailyJob.class)
+                .withIdentity("minDailyJobDetail", JOB_GROUP_NAME)
+                .storeDurably() //即使没有Trigger关联时，也不需要删除该JobDetail
+                .build();
+        return jobDetail;
+    }
+
+    @Bean
+    public Trigger minDailyTrigger(){
+
+        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("00 14 17 * * ?");
+
+        Trigger trigger= TriggerBuilder.newTrigger()
+                .forJob(minDailyJobDetail())
+                .withIdentity("minDailyTrigger",TRIGGER_GROUP_NAME)
+                .withSchedule(cronScheduleBuilder)
+                .build();
+
+        return trigger;
+    }
 }

@@ -1,44 +1,46 @@
 package com.example.jobschedule;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.jobschedule.entity.MeterEntity;
 import com.example.jobschedule.entity.MinTableEntity;
+import com.example.jobschedule.entity.XqDailyEntity;
 import com.example.jobschedule.job.MinDailyJob;
-import com.example.jobschedule.mapper.MeterMapper;
+import com.example.jobschedule.job.XqDailyJob;
 import com.example.jobschedule.service.MeterService;
 import com.example.jobschedule.service.MinTableService;
-import com.example.jobschedule.util.HttpClientUtil;
+import com.example.jobschedule.service.XqDailyService;
 import lombok.extern.slf4j.Slf4j;
 
+import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONArray;
-import org.springframework.boot.configurationprocessor.json.JSONException;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.jdbc.core.JdbcTemplate;
 
 
 import javax.sql.DataSource;
 import java.math.BigDecimal;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Slf4j
 @SpringBootTest
 class JobScheduleApplicationTests {
 
+    @Autowired
+    MeterService meterService;
+    @Autowired
+    XqDailyService xqDailyService;
 
+    @Autowired
+    XqDailyEntity xqDailyEntity;
+
+    ArrayList arrayList1=new ArrayList<>();
+    SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @Autowired
     DataSource dataSource;
 
-    @Autowired
-    MeterService meterService;
+    XqDailyJob b=new XqDailyJob();
 
     @Autowired
     MinTableService minTableService;
@@ -53,20 +55,59 @@ class JobScheduleApplicationTests {
 
 
     @Test
-    void test() throws JSONException {
+    void test() throws  org.json.JSONException {
         List<MeterEntity> meterEntityList=meterService.list();
         for (MeterEntity o:
         meterEntityList) {
             if (o.getObjectIds()!=null&&!"".equals(o.getObjectIds())&&!"null".equals(o.getObjectIds())){
-                System.out.println(o.getObjectIds());
+                System.out.print(o.getAddress()+"   ");
                 System.out.println(a.getMinDailyBySCADA(o.getObjectIds(),"2022-08-14"));
             }
+        }
+    }
+    @Test
+    void test2()throws JSONException{
+        SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+        Calendar calendar=Calendar.getInstance();
+        for (int j=1;j<10;j++){
+        calendar.setTime(new Date());
+        calendar.add(calendar.DATE,-j);
+        String queryTime=dayFormat.format(calendar.getTime());
+        calendar.add(calendar.DATE,-1);
+        String lastDay=dayFormat.format(calendar.getTime());
+        calendar.add(calendar.DATE,-1);
+        String lastTowDay=dayFormat.format(calendar.getTime());
+        List<MeterEntity> meterEntityList=meterService.list();
+
+        for (MeterEntity o:meterEntityList) {
+            if (o.getObjectIds()!=null&&!"".equals(o.getObjectIds())&&!"null".equals(o.getObjectIds())){
+                if (o.getNumber()>=2000) {
+                    xqDailyEntity.setAddress(o.getAddress());
+                    xqDailyEntity.setDate(queryTime);
+                    xqDailyEntity.setObjectIds(o.getObjectIds());
+                    String todayValue;
+                    String lastdayValue;
+                    todayValue = b.getXqDailyValue(o.getObjectIds(), queryTime, lastDay);
+                    lastdayValue = b.getXqDailyValue(o.getObjectIds(), lastDay, lastTowDay);
+
+                    if ("".equals(todayValue) || todayValue == null || "".equals(lastdayValue) || lastdayValue == null) {
+                        xqDailyEntity.setValue(null);
+                    } else {
+                        BigDecimal num1=new BigDecimal(todayValue);
+                        BigDecimal num2=new BigDecimal(lastdayValue);
+                        xqDailyEntity.setValue(num1.subtract(num2));
+                    }
+                    xqDailyEntity.setDate(lastDay);
+                    xqDailyService.save(xqDailyEntity);
+                }
+            }
+        }
         }
     }
 
     @Test
-    void contextLoads() throws JSONException, ParseException {
+    void contextLoads() throws  ParseException {
 //        List<String> fmAddressList = jdbcTemplate.queryForList("SELECT fmAddress FROM `夜间最小流量监控表统计表` WHERE NOT ISNULL(fmAddress)", String.class);
 //        SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
 //        long todayZero = dayFormat.parse(dayFormat.format(new Date())).getTime();
@@ -115,26 +156,20 @@ class JobScheduleApplicationTests {
         for (MeterEntity o:meterEntityList) {
             if (o.getFmAddress()!=null&&o.getFmAddress()!=""&&o.getFmAddress()!="null"){
                 String queryTime="2022-08-09";//dayFormat.format(new Date());
-                    try {
-                        minTableEntity.setAddress(o.getAddress());
-                        minTableEntity.setPlatform(o.getPlatform());
-                        minTableEntity.setArea(o.getArea());
-                        minTableEntity.setSpringValue(o.getSpringValue());
-                        minTableEntity.setReference(o.getReference());
-                        minTableEntity.setRemarks(o.getRemarks());
-                        minTableEntity.setDate(queryTime);
+                minTableEntity.setAddress(o.getAddress());
+                minTableEntity.setPlatform(o.getPlatform());
+                minTableEntity.setArea(o.getArea());
+                minTableEntity.setSpringValue(o.getSpringValue());
+                minTableEntity.setReference(o.getReference());
+                minTableEntity.setRemarks(o.getRemarks());
+                minTableEntity.setDate(queryTime);
 
-                        minTableEntity.setValue(new BigDecimal(a.getMinDaily(o.getFmAddress(),queryTime)));
-                        minTableEntity.setRemarks(o.getRemarks());
-                        minTableService.save(minTableEntity);
+//                        minTableEntity.setValue(a.getMinDaily(o.getFmAddress(),queryTime));
+                minTableEntity.setRemarks(o.getRemarks());
+                minTableService.save(minTableEntity);
 //                        System.out.print(o.getAddress()+"             ");
 //                        System.out.println(a.getMinDaily(o.getFmAddress(),queryTime));
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                }
+            }
             }
 
 

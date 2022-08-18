@@ -17,31 +17,13 @@ import java.math.BigDecimal;
 public class MeterEntity {
 
     @TableId
-
     private Integer number;
-
-
-
     private String address;
-
-
     private String platform;
-
-
     private String area;
-
-
     private BigDecimal springValue;
-
-
     private BigDecimal reference;
-
-
     private String remarks;
-
-
     private String fmAddress;
-
-
     private String objectIds;
 }
