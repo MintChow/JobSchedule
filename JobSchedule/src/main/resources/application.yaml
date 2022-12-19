@@ -1,5 +1,22 @@
 spring:
 
+  security:
+    user:
+      name: user
+      password: password
+    boot:
+      admin:
+        client:
+          url: http://localhost:8000
+          username: admin # 这个username与password用于注册到管理端，使其通过认证
+          password: admin
+          instance:
+            name: ReactiveCrud
+            metadata: # 这个name与password用于在注册到管理端时，使管理端有权限获取客户端端点数据
+              user.name: ${spring.security.user.name}
+              user.password: ${spring.security.user.password}
+
+
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://10.8.3.30:3306/GS_FR?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
@@ -35,3 +52,20 @@ spring:
           enabled: true
           config:
             drop-table-allow: false
+
+server:
+  port: 9000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: env,beans
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  app:
+    name: chapter-mogo

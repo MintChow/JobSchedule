@@ -43,41 +43,16 @@ public class MinDailyJob extends QuartzJobBean {
     protected void executeInternal(JobExecutionContext context) {
         //获取需查询的列表
 
-        String queryTime=dayFormat.format(new Date());
+//        String queryTime=dayFormat.format(new Date());
         List<MeterEntity> meterEntityList=meterService.list();
         Calendar calendar=Calendar.getInstance();
-//        for (int j=110;j<131;j++){
+//        for (int j=1;j<131;j++) {
 //            calendar.setTime(new Date());
-//            calendar.add(calendar.DATE,-j);
-//            queryTime=dayFormat.format(calendar.getTime());
-        for (MeterEntity o:meterEntityList) {
-            if (o.getFmAddress()!=null&&!"".equals(o.getFmAddress())&&!"null".equals(o.getFmAddress())){
-//                String queryTime="2022-08-09";//dayFormat.format(new Date());
-                try {
-                    minTableEntity.setNumber(o.getNumber());
-                    minTableEntity.setAddress(o.getAddress());
-                    minTableEntity.setPlatform(o.getPlatform());
-                    minTableEntity.setArea(o.getArea());
-                    minTableEntity.setSpringValue(o.getSpringValue());
-                    minTableEntity.setReference(o.getReference());
-                    minTableEntity.setRemarks(o.getRemarks());
-                    minTableEntity.setDate(queryTime);
-                    String min=getMinDaily(o.getFmAddress(),queryTime);
-                    if (""!=min&&min!=null){
-                        minTableEntity.setValue(new BigDecimal(min));
-                    }else {
-                        minTableEntity.setValue(null);
-                    }
-                    minTableEntity.setRemarks(o.getRemarks());
-                    minTableService.save(minTableEntity);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (o.getObjectIds()!=null&&!"".equals(o.getObjectIds())&&!"null".equals(o.getObjectIds())){
-                if (o.getNumber()<2000){
+//            calendar.add(calendar.DATE, -j);
+//            queryTime = dayFormat.format(calendar.getTime());
+        String queryTime=dayFormat.format(new Date());
+        for (MeterEntity o : meterEntityList) {
+                if (o.getFmAddress() != null && !"".equals(o.getFmAddress()) && !"null".equals(o.getFmAddress())) {
                     try {
                         minTableEntity.setNumber(o.getNumber());
                         minTableEntity.setAddress(o.getAddress());
@@ -87,20 +62,45 @@ public class MinDailyJob extends QuartzJobBean {
                         minTableEntity.setReference(o.getReference());
                         minTableEntity.setRemarks(o.getRemarks());
                         minTableEntity.setDate(queryTime);
-                        String min=getMinDailyBySCADA(o.getObjectIds(),queryTime);
-                        if (""!=min&&min!=null){
+                        String min = getMinDaily(o.getFmAddress(), queryTime);
+                        if ("" != min && min != null) {
                             minTableEntity.setValue(new BigDecimal(min));
-                        }else {
+                        } else {
                             minTableEntity.setValue(null);
                         }
                         minTableEntity.setRemarks(o.getRemarks());
                         minTableService.save(minTableEntity);
                     } catch (JSONException e) {
                         e.printStackTrace();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                if (o.getObjectIds() != null && !"".equals(o.getObjectIds()) && !"null".equals(o.getObjectIds())) {
+                    if (o.getNumber() < 2000) {
+                        try {
+                            minTableEntity.setNumber(o.getNumber());
+                            minTableEntity.setAddress(o.getAddress());
+                            minTableEntity.setPlatform(o.getPlatform());
+                            minTableEntity.setArea(o.getArea());
+                            minTableEntity.setSpringValue(o.getSpringValue());
+                            minTableEntity.setReference(o.getReference());
+                            minTableEntity.setRemarks(o.getRemarks());
+                            minTableEntity.setDate(queryTime);
+                            String min = getMinDailyBySCADA(o.getObjectIds(), queryTime);
+                            if ("" != min && min != null) {
+                                minTableEntity.setValue(new BigDecimal(min));
+                            } else {
+                                minTableEntity.setValue(null);
+                            }
+                            minTableEntity.setRemarks(o.getRemarks());
+                            minTableService.save(minTableEntity);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
-        }
 
 
     }
@@ -126,19 +126,19 @@ public class MinDailyJob extends QuartzJobBean {
             return null;
         }
         Long arr0;
-        String arr1;
+        BigDecimal arr1;
         arrayList1.clear();
         String min;
         for (int i=0;i<json.length();i++){
             arr0=json.getJSONArray(i).getLong(0);
             Long timestamp=arr0;
-            arr1=json.getJSONArray(i).getBigDecimal(1).toString();
+            arr1=json.getJSONArray(i).getBigDecimal(1);
             if (timestamp>=today2h&&timestamp<=today5h){
                 arrayList1.add(arr1);
             }
         }
         if(arrayList1.size()!=0){
-            min= (String) Collections.min(arrayList1);
+            min= Collections.min(arrayList1).toString();
             return  min;
         }else {
             return null;

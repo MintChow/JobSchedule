@@ -57,7 +57,7 @@ public class QuartzConfig {
     @Bean
     public Trigger minDailyTrigger(){
 
-        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("00 14 17 * * ?");
+        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule("00 30 13 * * ?");
 
         Trigger trigger= TriggerBuilder.newTrigger()
                 .forJob(minDailyJobDetail())

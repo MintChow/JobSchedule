@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Show PDF</title>
+        <meta charset="utf-8" />
+
+
+    </head>
+<body>
+<script type="text/javascript" src="/assets/js/pdf/pdfobject.min.js"></script>
+<div id="example1"></div>
+<script>
+    var options = {
+        height:  '1000pX',
+        pdfOpenParams: { view: 'FitV', page: '1' }
+    };
+    PDFObject.embed("JAVA%E5%BC%80%E5%8F%91%E6%89%8B%E5%86%8C.pdf", "#example1",options);
+</script>
+</body>
+</html>

@@ -8,6 +8,7 @@ import com.example.jobschedule.job.XqDailyJob;
 import com.example.jobschedule.service.MeterService;
 import com.example.jobschedule.service.MinTableService;
 import com.example.jobschedule.service.XqDailyService;
+import com.example.jobschedule.util.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import org.json.JSONException;
@@ -104,6 +105,53 @@ class JobScheduleApplicationTests {
             }
         }
         }
+    }
+    @Test
+    void test6(){
+        Date queryDate=new Date(122,7,16);
+        String queryTime=dayFormat.format(queryDate);
+        Calendar calendar=Calendar.getInstance();
+        calendar.setTime(queryDate);
+        calendar.add(calendar.DATE,1);
+        String tomorrow=dayFormat.format(calendar.getTime());
+        calendar.add(calendar.DATE,-2);
+        String lastDay=dayFormat.format(calendar.getTime());
+        System.out.println(queryTime+"\n"+tomorrow+"\n"+lastDay);
+    }
+
+    @Test
+    void test4(){
+        arrayList.add("9.31");
+        arrayList.add("9.541");
+        arrayList.add("100.5");
+        arrayList.add("10.1");
+        arrayList.add("2.13456");
+        System.out.println(Collections.min(arrayList));
+
+    }
+
+    @Test
+    void  test3() {
+        Map<String, String> param=new HashMap<>();
+        param.put("isSearch","true");
+        param.put("gid"," id_public_grid_R00456");
+        param.put("start","0");
+        param.put("limit","100");
+        param.put("exetype","");
+        param.put("rid","R00456");
+        param.put("report","");
+        param.put("worktype","");
+        param.put("queryparams","");
+        param.put("format","");
+        param.put("titles","售水结构月报表汇总");
+        param.put("printtype","1");
+        param.put("year","2022");
+        param.put("month","05");
+//        param.put("method","getReportData");
+        String url="http://10.8.2.92/mis/statistic/workreport.action?method=getReportData";
+
+        String result= HttpClientUtil.doPost(url,param);
+        System.out.println(result);
     }
 
     @Test
