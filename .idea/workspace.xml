@@ -10,10 +10,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="52fefea6-d6bb-4d36-8689-c2f3993aaebe" name="Changes" comment="添加SCADA最小值过滤">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/config/QuartzConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/config/QuartzConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/MinDailyJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/MinDailyJob.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -596,7 +593,7 @@
       <workItem from="1672274910302" duration="5370000" />
       <workItem from="1672280336212" duration="1672000" />
       <workItem from="1672282038295" duration="856000" />
-      <workItem from="1672282912173" duration="1166000" />
+      <workItem from="1672282912173" duration="1835000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1660814330212</created>
@@ -619,7 +616,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672280187853</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="添加SCADA最小值过滤">
+      <created>1672284177761</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1672284177761</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
