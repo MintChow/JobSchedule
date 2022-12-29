@@ -38,11 +38,11 @@ public class MinDailyJob extends QuartzJobBean {
 
     SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    List<MeterEntity> meterEntityList=meterService.list();
+
     @Override
     protected synchronized void executeInternal(JobExecutionContext context) {
         //获取需查询的列表
-
+        List<MeterEntity> meterEntityList=meterService.list();
 //        String queryTime=dayFormat.format(new Date());
 
         Calendar calendar=Calendar.getInstance();
