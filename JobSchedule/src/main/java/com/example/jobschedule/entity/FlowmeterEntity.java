@@ -1,29 +1,31 @@
 package com.example.jobschedule.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
-/**
- * @author MintChow
- * @create 2022-08-07-23:55
- */
-
 @Data
-@TableName("夜间最小流量监控表统计表")
-public class MeterEntity {
+@TableName("流量计统计表")
+public class FlowmeterEntity {
 
-    @TableId
+    @TableId(value = "number",type = IdType.ID_WORKER)
+    private Integer id;
     private Integer number;
     private String address;
     private String platform;
     private String area;
     private BigDecimal springValue;
     private BigDecimal reference;
-    private String remarks;
+    private BigDecimal referenceRatio;
     private String fmAddress;
-    private String objectIds;
+    private String pressureId;
+    private String insAegId;
+    private String insNegId;
+    private String accAegId;
     private BigDecimal filterValue;
+    private String remarks;
+
 }

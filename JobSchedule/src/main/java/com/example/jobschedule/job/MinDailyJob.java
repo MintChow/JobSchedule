@@ -43,15 +43,15 @@ public class MinDailyJob extends QuartzJobBean {
     protected synchronized void executeInternal(JobExecutionContext context) {
         //获取需查询的列表
         List<MeterEntity> meterEntityList=meterService.list();
-//        String queryTime=dayFormat.format(new Date());
+
 
         Calendar calendar=Calendar.getInstance();
-//        for (int j=1;j<131;j++) {
+//        for (int j=0;j<3;j++) {
 //            calendar.setTime(new Date());
 //            calendar.add(calendar.DATE, -j);
-//            queryTime = dayFormat.format(calendar.getTime());
+//            String queryTime = dayFormat.format(calendar.getTime());
         String queryTime=dayFormat.format(new Date());
-        for (MeterEntity o : meterEntityList) {
+            for (MeterEntity o : meterEntityList) {
                 if (o.getFmAddress() != null && !"".equals(o.getFmAddress()) && !"null".equals(o.getFmAddress())) {
                     try {
                         minTableEntity.setNumber(o.getNumber());
@@ -77,6 +77,7 @@ public class MinDailyJob extends QuartzJobBean {
                     }
                 }
                 if (o.getObjectIds() != null && !"".equals(o.getObjectIds()) && !"null".equals(o.getObjectIds())) {
+//                if ("3918".equals(o.getObjectIds()) ) {
                     if (o.getNumber() < 2000) {
                         try {
                             minTableEntity.setNumber(o.getNumber());
@@ -88,10 +89,10 @@ public class MinDailyJob extends QuartzJobBean {
                             minTableEntity.setRemarks(o.getRemarks());
                             minTableEntity.setDate(queryTime);
                             String min;
-                            if(o.getFilterValue()==null||"".equals(o.getFilterValue())){
+                            if (o.getFilterValue() == null || "".equals(o.getFilterValue())) {
                                 min = getMinDailyBySCADA(o.getObjectIds(), queryTime);
-                            }else {
-                                min = getMinDailyBySCADA(o.getObjectIds(), queryTime,o.getFilterValue());
+                            } else {
+                                min = getMinDailyBySCADA(o.getObjectIds(), queryTime, o.getFilterValue());
                             }
                             if ("".equals(min) || min == null) {
                                 minTableEntity.setValue(null);
@@ -106,7 +107,7 @@ public class MinDailyJob extends QuartzJobBean {
                     }
                 }
             }
-
+//        }
 
     }
 

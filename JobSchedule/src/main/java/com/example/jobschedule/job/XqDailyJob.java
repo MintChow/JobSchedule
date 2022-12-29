@@ -40,8 +40,8 @@ public class XqDailyJob extends QuartzJobBean {
     protected synchronized void executeInternal(JobExecutionContext context)  {
 //        Date queryDate=new Date(122,10,23);
             Date queryDate=new Date();
-//        Calendar calendar1=Calendar.getInstance();
-//        for (int j=1;j<6;j++) {
+        Calendar calendar1=Calendar.getInstance();
+//        for (int j=0;j<3;j++) {
 //            calendar1.setTime(new Date());
 //            calendar1.add(calendar1.DATE, -j);
 //            Date queryDate = calendar1.getTime();
