@@ -37,7 +37,7 @@ public class XqDailyJob extends QuartzJobBean {
 
 
     @Override
-    protected void executeInternal(JobExecutionContext context)  {
+    protected synchronized void executeInternal(JobExecutionContext context)  {
 //        Date queryDate=new Date(122,10,23);
             Date queryDate=new Date();
 //        Calendar calendar1=Calendar.getInstance();
@@ -99,4 +99,6 @@ public class XqDailyJob extends QuartzJobBean {
         String value=Double.toString(jsonData.getJSONArray("Values").getDouble(0));
         return value;
     }
+
+
 }

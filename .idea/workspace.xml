@@ -9,24 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52fefea6-d6bb-4d36-8689-c2f3993aaebe" name="Changes" comment="Changes">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_micrometer_micrometer_core_1_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hdrhistogram_HdrHistogram_2_1_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_latencyutils_LatencyUtils_2_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_2_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_actuator_autoconfigure_2_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_actuator_2_7_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JobSchedule/src/main/resources/static/assets/js/pdf/pdfobject.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JobSchedule/src/main/resources/static/assets/js/pdf/pdfobject.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JobSchedule/src/main/resources/static/doc.html" afterDir="false" />
+    <list default="true" id="52fefea6-d6bb-4d36-8689-c2f3993aaebe" name="Changes" comment="Changes2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/config/QuartzConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/config/QuartzConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/entity/MeterEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/entity/MeterEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/MinDailyJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/MinDailyJob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/XqDailyJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/XqDailyJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/util/HttpClientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/util/HttpClientUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/test/java/com/example/jobschedule/JobScheduleApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/test/java/com/example/jobschedule/JobScheduleApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,28 +127,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/worksapce/JobSchedule/JobSchedule/src/main/resources/static/js&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;库&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.46781608&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.web.browsers&quot;,
-    &quot;spring.configuration.checksum&quot;: &quot;f86fa715a4ff8d77530b364a4567b733&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "F:/worksapce/JobSchedule/JobSchedule/src/main/resources/static/js",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "库",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.46781608",
+    "settings.editor.selected.configurable": "reference.settings.ide.settings.web.browsers",
+    "spring.configuration.checksum": "f86fa715a4ff8d77530b364a4567b733"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\worksapce\JobSchedule\JobSchedule\src\main\resources\static\js" />
@@ -600,7 +588,11 @@
       <workItem from="1669340001511" duration="595000" />
       <workItem from="1669357564355" duration="133000" />
       <workItem from="1669622129103" duration="1072000" />
-      <workItem from="1671456424017" duration="1313000" />
+      <workItem from="1671456424017" duration="1433000" />
+      <workItem from="1671458470787" duration="178000" />
+      <workItem from="1672218616263" duration="451000" />
+      <workItem from="1672219650213" duration="308000" />
+      <workItem from="1672274910302" duration="5180000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1660814330212</created>
@@ -609,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660814330212</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Changes2">
+      <created>1671457885798</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671457885799</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -626,7 +625,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -643,7 +642,8 @@
       <path value="$PROJECT_DIR$/../git" />
     </ignored-roots>
     <MESSAGE value="Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes" />
+    <MESSAGE value="Changes2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

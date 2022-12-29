@@ -38,13 +38,13 @@ public class MinDailyJob extends QuartzJobBean {
 
     SimpleDateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-
+    List<MeterEntity> meterEntityList=meterService.list();
     @Override
-    protected void executeInternal(JobExecutionContext context) {
+    protected synchronized void executeInternal(JobExecutionContext context) {
         //获取需查询的列表
 
 //        String queryTime=dayFormat.format(new Date());
-        List<MeterEntity> meterEntityList=meterService.list();
+
         Calendar calendar=Calendar.getInstance();
 //        for (int j=1;j<131;j++) {
 //            calendar.setTime(new Date());
@@ -87,11 +87,16 @@ public class MinDailyJob extends QuartzJobBean {
                             minTableEntity.setReference(o.getReference());
                             minTableEntity.setRemarks(o.getRemarks());
                             minTableEntity.setDate(queryTime);
-                            String min = getMinDailyBySCADA(o.getObjectIds(), queryTime);
-                            if ("" != min && min != null) {
-                                minTableEntity.setValue(new BigDecimal(min));
-                            } else {
+                            String min;
+                            if(o.getFilterValue()==null||"".equals(o.getFilterValue())){
+                                min = getMinDailyBySCADA(o.getObjectIds(), queryTime);
+                            }else {
+                                min = getMinDailyBySCADA(o.getObjectIds(), queryTime,o.getFilterValue());
+                            }
+                            if ("".equals(min) || min == null) {
                                 minTableEntity.setValue(null);
+                            } else {
+                                minTableEntity.setValue(new BigDecimal(min));
                             }
                             minTableEntity.setRemarks(o.getRemarks());
                             minTableService.save(minTableEntity);
@@ -172,5 +177,31 @@ public class MinDailyJob extends QuartzJobBean {
         }
     }
 
+    public String getMinDailyBySCADA(String objectIds, String queryTime,BigDecimal filterValue) throws JSONException {
+        String jsonsub="{\"ObjectIds\":["+objectIds+"],\"StartTime\":\""+queryTime +" 02:00:00\",\"EndTime\":\""+queryTime+ " 05:00:00\",\"Step\":1}";
+        String url="http://10.8.5.119:48803/Api/wsmp/v1/scadaQuery/lines";
+        String result=HttpClientUtil.doPostJson(url,jsonsub);
+        JSONObject json =new JSONObject(result);
+        JSONArray jsonArray=json.getJSONArray("Data");
+        if (jsonArray.length()==0){
+            return null;
+        }
+        jsonArray=jsonArray.getJSONArray(0);
+        arrayList2.clear();
+        for (int i=0;i<jsonArray.length();i++){
+            JSONObject jsonData=jsonArray.getJSONObject(i);
+            BigDecimal value=jsonData.getJSONArray("Values").getBigDecimal(0);
+            if (value.compareTo(filterValue)>=0){
+                arrayList2.add(value);
+            }
+        }
+        if(arrayList2.size()!=0){
+            BigDecimal mind= (BigDecimal) Collections.min(arrayList2);
+            String min =mind.toPlainString();
+            return  min;
+        }else {
+            return null;
+        }
+    }
 }
 

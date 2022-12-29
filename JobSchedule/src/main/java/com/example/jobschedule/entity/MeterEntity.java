@@ -26,4 +26,5 @@ public class MeterEntity {
     private String remarks;
     private String fmAddress;
     private String objectIds;
+    private BigDecimal filterValue;
 }
