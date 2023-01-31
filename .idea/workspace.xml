@@ -9,18 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52fefea6-d6bb-4d36-8689-c2f3993aaebe" name="Changes" comment="添加SCADA最小值过滤">
-      <change afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/entity/FlowmeterEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/entity/MinFlowEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/MinFlowJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/VolumeDailyJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/entity/MeterEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/entity/MeterEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/MinDailyJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/MinDailyJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/XqDailyJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/XqDailyJob.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/mapper/MinTableMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/mapper/MinTableMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JobSchedule/src/test/java/com/example/jobschedule/JobScheduleApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/test/java/com/example/jobschedule/JobScheduleApplicationTests.java" afterDir="false" />
-    </list>
+    <list default="true" id="52fefea6-d6bb-4d36-8689-c2f3993aaebe" name="Changes" comment="任务和表模型添加" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -172,10 +161,10 @@
       <recent name="E:\Project" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.example.jobschedule.entity" />
       <recent name="com.example.jobschedule.service.impl" />
       <recent name="com.example.jobschedule.service" />
       <recent name="com.example.jobschedule.mapper" />
-      <recent name="com.example.jobschedule.entity" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -607,7 +596,7 @@
       <workItem from="1672282912173" duration="3096000" />
       <workItem from="1673228720578" duration="2643000" />
       <workItem from="1673831435567" duration="6801000" />
-      <workItem from="1675152864894" duration="4116000" />
+      <workItem from="1675152864894" duration="4441000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1660814330212</created>
@@ -651,7 +640,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672285248870</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="任务和表模型添加">
+      <created>1675157561686</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1675157561686</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,7 +683,8 @@
     <MESSAGE value="Changes" />
     <MESSAGE value="Changes2" />
     <MESSAGE value="添加SCADA最小值过滤" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加SCADA最小值过滤" />
+    <MESSAGE value="任务和表模型添加" />
+    <option name="LAST_COMMIT_MESSAGE" value="任务和表模型添加" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
