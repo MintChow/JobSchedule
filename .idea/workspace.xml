@@ -9,7 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52fefea6-d6bb-4d36-8689-c2f3993aaebe" name="Changes" comment="任务和表模型添加" />
+    <list default="true" id="52fefea6-d6bb-4d36-8689-c2f3993aaebe" name="Changes" comment="添加SCADA最小值过滤">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,8 +24,8 @@
         <option value="FxmlFile" />
         <option value="Kotlin File" />
         <option value="spring-beans.schema" />
-        <option value="HTML File" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -130,8 +132,6 @@
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
     &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;F:/worksapce/JobSchedule/JobSchedule/src/main/resources/static/js&quot;,
@@ -161,10 +161,10 @@
       <recent name="E:\Project" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.example.jobschedule.entity" />
       <recent name="com.example.jobschedule.service.impl" />
       <recent name="com.example.jobschedule.service" />
       <recent name="com.example.jobschedule.mapper" />
+      <recent name="com.example.jobschedule.entity" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -516,9 +516,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.JobScheduleApplicationTests.test3" />
         <item itemvalue="JUnit.JobScheduleApplicationTests.test6" />
         <item itemvalue="JUnit.JobScheduleApplicationTests.test4" />
+        <item itemvalue="JUnit.JobScheduleApplicationTests.test3" />
         <item itemvalue="HTTP 请求.JobScheduleApplication | #1" />
         <item itemvalue="JUnit.JobScheduleApplicationTests.test2" />
       </list>
@@ -593,10 +593,7 @@
       <workItem from="1672274910302" duration="5370000" />
       <workItem from="1672280336212" duration="1672000" />
       <workItem from="1672282038295" duration="856000" />
-      <workItem from="1672282912173" duration="3096000" />
-      <workItem from="1673228720578" duration="2643000" />
-      <workItem from="1673831435567" duration="6801000" />
-      <workItem from="1675152864894" duration="4441000" />
+      <workItem from="1672282912173" duration="1835000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1660814330212</created>
@@ -626,28 +623,7 @@
       <option name="project" value="LOCAL" />
       <updated>1672284177761</updated>
     </task>
-    <task id="LOCAL-00005" summary="添加SCADA最小值过滤">
-      <created>1672284837538</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1672284837538</updated>
-    </task>
-    <task id="LOCAL-00006" summary="添加SCADA最小值过滤">
-      <created>1672285248870</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1672285248870</updated>
-    </task>
-    <task id="LOCAL-00007" summary="任务和表模型添加">
-      <created>1675157561686</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1675157561686</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -683,8 +659,7 @@
     <MESSAGE value="Changes" />
     <MESSAGE value="Changes2" />
     <MESSAGE value="添加SCADA最小值过滤" />
-    <MESSAGE value="任务和表模型添加" />
-    <option name="LAST_COMMIT_MESSAGE" value="任务和表模型添加" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加SCADA最小值过滤" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
