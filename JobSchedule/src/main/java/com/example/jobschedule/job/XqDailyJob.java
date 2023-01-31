@@ -38,9 +38,9 @@ public class XqDailyJob extends QuartzJobBean {
 
     @Override
     protected synchronized void executeInternal(JobExecutionContext context)  {
-//        Date queryDate=new Date(122,10,23);
+//        Date queryDate=new SimpleDateFormat("yyyy-MM-dd").parse("2023-02-02");
             Date queryDate=new Date();
-        Calendar calendar1=Calendar.getInstance();
+            Calendar calendar1=Calendar.getInstance();
 //        for (int j=0;j<3;j++) {
 //            calendar1.setTime(new Date());
 //            calendar1.add(calendar1.DATE, -j);

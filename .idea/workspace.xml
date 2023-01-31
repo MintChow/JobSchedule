@@ -9,7 +9,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52fefea6-d6bb-4d36-8689-c2f3993aaebe" name="Changes" comment="任务和表模型添加" />
+    <list default="true" id="52fefea6-d6bb-4d36-8689-c2f3993aaebe" name="Changes" comment="任务和表模型添加">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_crypto_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_7_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/util/ValueUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/XqDailyJob.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/job/XqDailyJob.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/util/HttpClientUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/main/java/com/example/jobschedule/util/HttpClientUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JobSchedule/src/test/java/com/example/jobschedule/JobScheduleApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/JobSchedule/src/test/java/com/example/jobschedule/JobScheduleApplicationTests.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,8 +41,8 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -174,7 +187,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.JobScheduleApplication">
+  <component name="RunManager" selected="JUnit.JobScheduleApplicationTests.test6">
     <configuration name="JobScheduleApplication | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/JobScheduleApplication.http" requestIdentifier="#1" runType="运行单个请求">
       <method v="2" />
     </configuration>
@@ -516,8 +529,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.JobScheduleApplicationTests.test3" />
         <item itemvalue="JUnit.JobScheduleApplicationTests.test6" />
+        <item itemvalue="JUnit.JobScheduleApplicationTests.test3" />
         <item itemvalue="JUnit.JobScheduleApplicationTests.test4" />
         <item itemvalue="HTTP 请求.JobScheduleApplication | #1" />
         <item itemvalue="JUnit.JobScheduleApplicationTests.test2" />
@@ -597,6 +610,8 @@
       <workItem from="1673228720578" duration="2643000" />
       <workItem from="1673831435567" duration="6801000" />
       <workItem from="1675152864894" duration="4441000" />
+      <workItem from="1675211765452" duration="1803000" />
+      <workItem from="1675302622438" duration="15852000" />
     </task>
     <task id="LOCAL-00001" summary="Changes">
       <created>1660814330212</created>

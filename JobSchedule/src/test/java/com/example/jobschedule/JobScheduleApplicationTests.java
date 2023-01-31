@@ -8,17 +8,14 @@ import com.example.jobschedule.job.XqDailyJob;
 import com.example.jobschedule.service.MeterService;
 import com.example.jobschedule.service.MinTableService;
 import com.example.jobschedule.service.XqDailyService;
-import com.example.jobschedule.util.HttpClientUtil;
 import lombok.extern.slf4j.Slf4j;
 
-import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
 import javax.sql.DataSource;
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -58,8 +55,8 @@ class JobScheduleApplicationTests {
 
 
     @Test
-    void test6(){
-        Date queryDate=new Date(122,7,16);
+    void test6() throws ParseException {
+        Date queryDate=new SimpleDateFormat("yyyy-MM-dd").parse("2022-09-21");
         String queryTime=dayFormat.format(queryDate);
         Calendar calendar=Calendar.getInstance();
         calendar.setTime(queryDate);
